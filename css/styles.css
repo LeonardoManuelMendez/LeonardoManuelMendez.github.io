@@ -4017,8 +4017,8 @@ input[type="button"].btn--primary:focus {
     height: 32px;
     width: 32px;
     line-height: 32px;
-    margin-left: -16px;
-    margin-top: -16px;
+    margin-left: 1px;
+    margin-top: 1px;
     text-align: center;
     opacity: 0;
     visibility: hidden;
@@ -4033,9 +4033,17 @@ input[type="button"].btn--primary:focus {
 
 .folio-item img {
     display: block;
-    margin: 0;
     -webkit-transition: all, .5s;
     transition: all, .5s;
+    margin: 0; /* Elimina cualquier margen que pueda sobrescribir */
+    padding: 0; /* Asegúrate de que no haya padding adicional */
+} 
+
+.folio-item__thumb img {
+    border: 2px solid #ccc; /* Cambia el color y grosor del borde según prefieras */
+    border-radius: 5px; /* Opcional: redondea las esquinas */
+    padding: 0; /* Opcional: agrega espacio interno entre la imagen y el borde */
+    box-sizing: border-box; /* Incluye el borde en el tamaño total */
 }
 
 /* on hover
