@@ -1,5 +1,5 @@
 /* ===================================================================
- * Ceevee 2.0.0 - Main JS
+ * Leonardo Manuel Méndez Portfolio - Main JS
  *
  * ------------------------------------------------------------------- */
 
@@ -40,7 +40,9 @@
 
    /* Parallax
     * -------------------------------------------------- */
-    const ssParallax = function() { 
+    const ssParallax = function() {
+
+        if (typeof Rellax === 'undefined' || !document.querySelector('.rellax')) return;
 
         const rellax = new Rellax('.rellax');
 
@@ -167,8 +169,10 @@
 
 
    /* Swiper
-    * ------------------------------------------------------ */ 
+    * ------------------------------------------------------ */
     const ssSwiper = function() {
+
+        if (typeof Swiper === 'undefined' || !document.querySelector('.swiper-container')) return;
 
         const mySwiper = new Swiper('.swiper-container', {
 
@@ -192,42 +196,6 @@
          });
 
     }; // end ssSwiper
-
-
-   /* Lightbox
-    * ------------------------------------------------------ */
-    const ssLightbox = function() {
-
-        const folioLinks = document.querySelectorAll('.folio-item a');
-        const modals = [];
-
-        folioLinks.forEach(function(link) {
-            let modalbox = link.getAttribute('href');
-            let instance = basicLightbox.create(
-                document.querySelector(modalbox),
-                {
-                    onShow: function(instance) {
-                        //detect Escape key press
-                        document.addEventListener("keydown", function(evt) {
-                            evt = evt || window.event;
-                            if(evt.keyCode === 27){
-                            instance.close();
-                            }
-                        });
-                    }
-                }
-            )
-            modals.push(instance);
-        });
-
-        folioLinks.forEach(function(link, index) {
-            link.addEventListener("click", function(e) {
-                e.preventDefault();
-                modals[index].show();
-            });
-        });
-
-    };  // end ssLightbox
 
 
    /* Alert boxes
@@ -307,7 +275,6 @@
         ssMobileMenu();
         ssScrollSpy();
         ssSwiper();
-        ssLightbox();
         ssAlertBoxes();
         ssSmoothScroll();
         ssBackToTop();
