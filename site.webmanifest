@@ -1,1 +1,21 @@
-{"name":"Leonardo Méndez Portfolio","short_name":"Portfolio","icons":[{"src":"/logoleonardo192x192.png","sizes":"192x192","type":"image/png"},{"src":"/logoleonardo512x512.png","sizes":"512x512","type":"image/png"}],"theme_color":"#ffffff","background_color":"#ffffff","display":"standalone"}
+{
+    "name": "Leonardo Manuel Méndez Portfolio",
+    "short_name": "Leonix Portfolio",
+    "icons": [
+        {
+            "src": "images/logoleonardo192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "images/logoleonardo512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#0A192F",
+    "background_color": "#f8fafc",
+    "display": "standalone",
+    "start_url": "./",
+    "scope": "./"
+}

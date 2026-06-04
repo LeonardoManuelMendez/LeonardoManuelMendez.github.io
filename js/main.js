@@ -101,10 +101,16 @@
 
         if (!(toggleButton && headerNavWrap)) return;
 
+        const setMenuState = function(isOpen) {
+            toggleButton.classList.toggle('is-clicked', isOpen);
+            siteBody.classList.toggle('menu-is-open', isOpen);
+            toggleButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            toggleButton.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
+        };
+
         toggleButton.addEventListener('click', function(event){
             event.preventDefault();
-            toggleButton.classList.toggle('is-clicked');
-            siteBody.classList.toggle('menu-is-open');
+            setMenuState(!siteBody.classList.contains('menu-is-open'));
         });
 
         headerNavWrap.querySelectorAll('.s-header__nav a').forEach(function(link) {
@@ -112,8 +118,7 @@
 
                 // at 800px and below
                 if (window.matchMedia('(max-width: 800px)').matches) {
-                    toggleButton.classList.toggle('is-clicked');
-                    siteBody.classList.toggle('menu-is-open');
+                    setMenuState(false);
                 }
             });
         });
@@ -122,8 +127,7 @@
 
             // above 800px
             if (window.matchMedia('(min-width: 801px)').matches) {
-                if (siteBody.classList.contains('menu-is-open')) siteBody.classList.remove('menu-is-open');
-                if (toggleButton.classList.contains("is-clicked")) toggleButton.classList.remove("is-clicked");
+                setMenuState(false);
             }
         });
 
@@ -229,12 +233,24 @@
         const triggers = document.querySelectorAll(".smoothscroll");
 
         triggers.forEach(function(trigger) {
-            trigger.addEventListener("click", function() {
+            trigger.addEventListener("click", function(event) {
                 const target = trigger.getAttribute("href");
+                const targetElement = document.querySelector(target);
 
-                Jump(target, {
-                    duration: 1200,
+                if (!targetElement) return;
+
+                event.preventDefault();
+
+                const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+                targetElement.scrollIntoView({
+                    behavior: prefersReducedMotion ? 'auto' : 'smooth',
+                    block: 'start',
                 });
+
+                if (targetElement.id) {
+                    window.history.pushState(null, '', '#' + targetElement.id);
+                }
             });
         });
 
